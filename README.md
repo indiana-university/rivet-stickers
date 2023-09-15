@@ -209,10 +209,16 @@ html:has(rvt-sticker:not(:defined)) {
 
 ## Accessibility
 
-Add an `alt` attribute to a sticker if it is not considered a decorative image.
+Stickers are considered decorative images. They are hidden from screen readers via `<svg aria-hidden="true">`. However, [text alternatives should still be provided](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content) wherever stickers are used.
 
 ```html
-<rvt-sticker name="popper" alt="A party popper showers paper confetti for a graduation event"></rvt-sticker>
+<!-- Example: Text alternative. -->
+<rvt-sticker name="shoe-running"></rvt-sticker>
+<span>Running club</span>
+
+<!-- Example: Screen reader only text alternative. -->
+<rvt-sticker name="shoe-running"></rvt-sticker>
+<span class="rvt-sr-only">Running club</span>
 ```
 
 ## Request a new sticker
