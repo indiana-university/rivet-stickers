@@ -1,0 +1,17 @@
+html {
+	-webkit-text-size-adjust: none;
+	background-color: var(--color-black-100);
+}
+
+html:has(rvt-sticker:not(:defined)) {
+	display: none;
+}
+
+.docs-sticker-list {
+	display: grid;
+	gap: 0.5rem;
+	grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}

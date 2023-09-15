@@ -1,0 +1,119 @@
+/*!
+ * Copyright (C) 2021 The Trustees of Indiana University
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { build } from 'vite';
+
+const OUT_DIR = 'dist';
+const OUT_FILE = 'rivet-stickers';
+const SVG_DIR = 'stickers';
+const SRC_DIR = 'src';
+const ELEMENT_PATH = `${SRC_DIR}/rivet-sticker-element.js`;
+
+//
+// Start build process
+//
+
+await cleanup();
+const icons = await getIcons();
+await createJSON(icons);
+await createJS(icons);
+await createBundle(icons);
+
+//
+// Build steps
+//
+
+async function cleanup () {
+	await fs.rm(OUT_DIR, { force: true, recursive: true });
+	await fs.mkdir(path.join(OUT_DIR, SVG_DIR), { recursive: true });
+}
+
+async function getIcons () {
+	const dir = path.join(SRC_DIR, SVG_DIR);
+	const promises = (await fs.readdir(dir))
+		.map((file) => {
+			const filePath = path.resolve(dir, file);
+			const { ext, name } = path.parse(file);
+			return { ext, filePath, name };
+		})
+		.filter(({ ext }) => ext === '.svg')
+		.sort(sortByKey('name'))
+		.map(async ({ filePath, name }) => {
+			const source = await fs.readFile(filePath, { encoding: 'utf8' });
+			return { name, source };
+		});
+	return await Promise.all(promises);
+}
+
+async function createJSON (icons) {
+	const data = icons.map(({ name }) => name);
+	const contents = JSON.stringify(data);
+	await writeFile(`${OUT_FILE}.json`, contents);
+}
+
+async function createJS (icons) {
+	const promises = icons.map(async ({ name, source }) => {
+		const svg = source
+			.replace(/(<svg).*(>)/, '$1$2')
+			.replace(/(fill=")#fff(")/g, '$1var(--fill)$2')
+			.replace(/ fill="#263245"/g, '')
+			.replace(/(\n|  )/g, '');
+		const contents =
+`import { registerSticker } from '../../${ELEMENT_PATH}';
+
+export const name = '${name}';
+export const svg = \`${svg}\`;
+
+registerSticker(name, svg);
+`;
+		await writeFile(path.join(SVG_DIR, `${name}.js`), contents);
+	});
+	await Promise.all(promises);
+}
+
+async function createBundle (icons) {
+	const tmpFile = 'tmp.js';
+	const tmpPath = path.resolve(OUT_DIR, tmpFile);
+	const imports = icons
+		.map(({ name }) => `import './${SVG_DIR}/${name}.js';\n`)
+		.join('');
+	const exports = `export * from '../${ELEMENT_PATH}';\n`;
+	const contents = `${imports}${exports}`;
+	await writeFile(tmpFile, contents);
+	await build({
+		build: {
+			emptyOutDir: false,
+			lib: {
+				entry: tmpPath,
+				fileName: OUT_FILE,
+				name: 'RivetStickers'
+			}
+		}
+	});
+	await fs.rm(tmpPath);
+}
+
+//
+// Utilities
+//
+
+function hasKey (source, key) {
+	return Object.prototype.hasOwnProperty.call(source, key);
+}
+
+function sortByKey (key) {
+	return (a, b) => {
+		if (!hasKey(a, key) || !hasKey(b, key)) {
+			return 0;
+		}
+		return a[key] > b[key] ? 1 : a[key] < b[key] ? -1 : 0;
+	};
+}
+
+async function writeFile (fileName, contents) {
+	return fs.writeFile(path.resolve(OUT_DIR, fileName), contents);
+}
