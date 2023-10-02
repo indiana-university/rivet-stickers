@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" viewBox="0 0 80 80">
   <path fill="#fff" d="M24 16h32v10H43.5l-.3-.4a4 4 0 1 0 0 4.799l.3-.399H56v34H24V16Z"/>
+  <path fill="#000" d="M39 51V38h2v13h4V41h2v11l-1 1h-5v4h-2v-4h-5l-1-1V41h2v10h4Z"/>
   <path fill="#000" d="M24 16h32v10H43.5l-.3-.4a4 4 0 1 0 0 4.799l.3-.399H56v34H24V16Zm30 2H26v44h28V32h-9.528a6 6 0 1 1 0-8H54v-6Z"/>
 </svg>
