@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" viewBox="0 0 80 80">
   <path fill="#fff" d="M64 21H16v38h48V21Z"/>
-  <path fill="#263245" d="M22 25a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm5-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm18 18a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.761 0-5 2.015-5 4.5h10c0-2.485-2.239-4.5-5-4.5Z"/>
-  <path fill="#263245" d="M39 32h18v22H39V32Zm2 2v18h14V34H41Zm-18 3v2h12v-2H23Zm12 7H23v-2h12v2Zm-12 3v2h12v-2H23Z"/>
-  <path fill="#263245" d="M64 21H16v38h48V21Zm-46 6v-4h44v4H18Zm0 2h44v28H18V29Z"/>
+  <path fill="#000" d="M22 25a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm5-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm18 18a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.761 0-5 2.015-5 4.5h10c0-2.485-2.239-4.5-5-4.5Z"/>
+  <path fill="#000" d="M39 32h18v22H39V32Zm2 2v18h14V34H41Zm-18 3v2h12v-2H23Zm12 7H23v-2h12v2Zm-12 3v2h12v-2H23Z"/>
+  <path fill="#000" d="M64 21H16v38h48V21Zm-46 6v-4h44v4H18Zm0 2h44v28H18V29Z"/>
 </svg>

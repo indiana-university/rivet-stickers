@@ -60,7 +60,7 @@ async function createJS (icons) {
 		const svg = source
 			.replace(/(<svg).*(>)/, '$1$2')
 			.replace(/(fill=")#fff(")/g, '$1var(--fill)$2')
-			.replace(/ fill="#263245"/g, '')
+			.replace(/ fill="#000"/g, '')
 			.replace(/(\n|  )/g, '');
 		const contents =
 `import { registerSticker } from '../../${ELEMENT_PATH}';
