@@ -7,7 +7,6 @@
 1. [Quick start](#quick-start)
 1. [Install](#install)
 1. [API](#api)
-1. [Add a custom sticker](#add-a-custom-sticker)
 1. [Usage](#usage)
 1. [Change sticker color](#change-sticker-color)
 1. [Change sticker spacing](#change-sticker-spacing)
@@ -161,7 +160,7 @@ Use the `theme` attribute to color stickers.
 <rvt-sticker name="tulip" theme="neutral"></rvt-sticker>
 
 <!-- Crimson theme: Red lines on light red circular background. -->
-<rvt-sticker name="tulip" theme="crimson"></rvt-sticker>
+<rvt-sticker nae="tulip" theme="crimson"></rvt-sticker>
 ```
 
 ## Flash of unstyled content
