@@ -14,7 +14,6 @@
 1. [Flash of unstyled content](#flash-of-unstyled-content)
 1. [Accessibility](#accessibility)
 1. [Request a new sticker](#request-a-new-sticker)
-1. [sticker specifications](#sticker-specifications)
 1. [Run the docs site](#run-the-docs-site)
 
 ## Quick start
@@ -79,11 +78,11 @@ Use the sticker modules for production.
 
 ```js
 // Import individual sticker modules.
-import 'rivet-stickers/dist/stickers/heart.js';
-import 'rivet-stickers/dist/stickers/heart-solid.js';
+import 'rivet-stickers/dist/stickers/tulip.js';
+import 'rivet-stickers/dist/stickers/t-shirt-iu.js';
 
 // Optional: Access the API.
-import { getStickers, registerSticker, RivetStickerElement } from 'rivet-stickers';
+import { getStickers, RivetStickerElement } from 'rivet-stickers';
 ```
 
 ### `rivet-stickers.js`
@@ -95,7 +94,7 @@ Use the module bundle for development or prototyping.
 import 'rivet-stickers/dist/rivet-stickers.js';
 
 // Optional: Access the API.
-import { getStickers, registerSticker, RivetStickerElement } from 'rivet-stickers/dist/rivet-stickers.js';
+import { getStickers, RivetStickerElement } from 'rivet-stickers/dist/rivet-stickers.js';
 ```
 
 ### `rivet-stickers.umd.cjs`
@@ -107,55 +106,23 @@ Use the UMD bundle for development or prototyping.
 <script src="/path/to/rivet-stickers/dist/rivet-stickers.umd.cjs"></script>
 <script>
 // Optional: Access the API.
-const { getStickers, registerSticker, RivetStickerElement } = window.Rivetstickers;
+const { getStickers, RivetStickerElement } = window.Rivetstickers;
 </script>
 ```
 
-## Add a custom sticker
+### `rvtStickerRegistered` event
 
-Use the `registerSticker()` function to register the name and SVG code for a custom sticker. Then, it can be used like any of the provided stickers. Refer to the [sticker specifications](#sticker-specifications) section to learn how to design an sticker that aligns with the Rivet sticker set.
-
-```js
-// /src/sticker-diamond.js
-import { registerSticker } from 'rivet-stickers';
-
-const name = 'diamond';
-const svg = `<svg><polyline points="8,2 14,8 8,14 2,8" /></svg>`;
-
-registerSticker(name, svg);
-```
-
-If left unspecified, the `<svg>` will default to the following attributes when rendered:
-
-```html
-<svg
-	aria-hidden="true"
-	fill="currentColor"
-	focusable="false"
-	height="80"
-	viewBox="0 0 80 80"
-	width="80"
-	xmlns="http://www.w3.org/2000/svg"
->
-```
-
-Include this custom sticker in the module for the custom sticker set.
-
-```diff
-// /src/stickers.js
-import 'rivet-stickers/dist/stickers/popper.js';
-import 'rivet-stickers/dist/stickers/tulip.js';
-+ import './sticker-diamond.js';
-```
-
-Listen to the custom `rvtStickerRegistered` event to know when each sticker has been registered and is ready to be displayed. In the following example, the name of the sticker ("diamond") is logged to the console after the custom `sticker-diamond.js` module is processed.
+Listen to the custom `rvtStickerRegistered` event to know when each sticker has been registered and is ready to be displayed. In the following example, the names of the stickers ("tulip" and "t-shirt-iu") are logged to the console after each sticker is processed.
 
 ```js
 document.addEventListener('rvtStickerRegistered', (event) => {
 	console.log(event.detail.name);
-	// "diamond"
+	// "tulip"
+	// "t-shirt-iu"
 });
 ```
+
+### `getStickers()` function
 
 Use the `getStickers()` function get an array of all registered stickers.
 
@@ -163,20 +130,22 @@ Use the `getStickers()` function get an array of all registered stickers.
 import { getStickers } from 'rivet-stickers';
 
 console.log(getStickers());
-// ["popper", "tulip", "diamond"]
+// ["tulip", "t-shirt-iu"]
 ```
+
+### `RivetStickerElement` class
+
+Access the `RivetStickerElement` class if you need to extend the class or use JavaScript to instantiate an instance of the element.
+
+[Needs example]
 
 ## Usage
 
 Once stickers are installed and registered, they can be rendered in HTML.
 
 ```html
-<!-- Rivet stickers -->
-<rvt-sticker name="popper"></rvt-sticker>
 <rvt-sticker name="tulip"></rvt-sticker>
-
-<!-- Custom sticker -->
-<rvt-sticker name="diamond"></rvt-sticker>
+<rvt-sticker name="t-shirt-iu"></rvt-sticker>
 ```
 
 ## Color themes
@@ -213,26 +182,17 @@ Stickers are considered decorative images. They are hidden from screen readers v
 
 ```html
 <!-- Example: Text alternative. -->
-<rvt-sticker name="shoe-running"></rvt-sticker>
-<span>Running club</span>
+<rvt-sticker name="t-shirt-iu"></rvt-sticker>
+<span>Apparel</span>
 
 <!-- Example: Screen reader only text alternative. -->
-<rvt-sticker name="shoe-running"></rvt-sticker>
-<span class="rvt-sr-only">Running club</span>
+<rvt-sticker name="t-shirt-iu"></rvt-sticker>
+<span class="rvt-sr-only">Apparel</span>
 ```
 
 ## Request a new sticker
 
-[Submit a new issue](https://github.com/indiana-university/rivet-stickers/issues/new) to request a new sticker. Include anything that may help to visually describe this new sticker, such as examples from other sticker sets, examples of usage in various apps or websites, the SVG source code of the sticker, or even a sketch.
-
-## Sticker specifications
-
-Draw each sticker to the following specifications:
-
-- 80&times;80px grid
-- 2px stroke for all sticker outlines
-- Expand all strokes before exporting and merge/flatten artwork in to one group.
-- Set `fill` attribute to `currentColor` on exported SVGs.
+[Submit a Rivet support request](https://github.com/indiana-university/rivet-stickers/issues/new) to request a new sticker.
 
 ## Run the docs site
 
