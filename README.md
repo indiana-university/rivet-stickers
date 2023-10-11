@@ -118,6 +118,8 @@ Once stickers are installed and registered, declare the sticker to be rendered w
 <rvt-sticker name="t-shirt-iu"></rvt-sticker>
 ```
 
+The name of a sticker matches its corresponding SVG file name (`./src/stickers/*.svg`).
+
 ### `size` attribute
 
 Use the `size` attribute to select the size of the sticker. 
