@@ -53,7 +53,7 @@ The following are some notable contents in the `rivet-stickers` npm package and 
 
 ### `stickers/*.js`
 
-Use the sticker modules for production.
+Use the sticker modules for production. This method is recommended, as only the declared stickers will be included.
 
 ```js
 // Import individual sticker modules.
@@ -66,23 +66,24 @@ import { getStickers, RivetStickerElement } from 'rivet-stickers';
 
 ### `rivet-stickers.js`
 
-Use the module bundle for development or prototyping.
+Use the module bundle for development or prototyping. All stickers are included.
 
-```js
-// Import all stickers.
-import 'rivet-stickers/dist/rivet-stickers.js';
-
+```html
+<!-- Import all stickers from a single module. -->
+<script type="module" src="./rivet-stickers/dist/rivet-stickers.js"></script>
+<script type="module">
 // Optional: Access the API.
-import { getStickers, RivetStickerElement } from 'rivet-stickers/dist/rivet-stickers.js';
+import { getStickers, RivetStickerElement } from './rivet-stickers/dist/rivet-stickers.js';
+</script>
 ```
 
 ### `rivet-stickers.umd.cjs`
 
-Use the UMD bundle for development or prototyping.
+Use the UMD bundle for development or prototyping. All stickers are included.
 
 ```html
 <!-- Import all stickers from a single file. -->
-<script src="/path/to/rivet-stickers/dist/rivet-stickers.umd.cjs"></script>
+<script src="./rivet-stickers/dist/rivet-stickers.umd.cjs"></script>
 <script>
 // Optional: Access the API.
 const { getStickers, RivetStickerElement } = window.RivetStickers;
