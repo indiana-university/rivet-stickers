@@ -36,24 +36,6 @@ Install this package by referencing it from a service like [UNPKG](https://unpkg
 npm install --save rivet-stickers
 ```
 
-Link to the desired JavaScript modules inside of the HTML document's `<head>`. In the following example, replace "`/path/to/`" with the appropriate path to the modules.
-
-```html
-<!-- Option 1: Include all stickers in a single bundled file. -->
-<script type="module" src="/path/to/rivet-stickers/dist/rivet-stickers.js"></script>
-
-<!-- Option 2 (recommended): Make a custom sticker set. -->
-<script type="module" src="/src/stickers.js"></script>
-```
-
-The `rivet-stickers.js` file is ideal for prototyping (Option 1), but it likely includes more stickers than are needed for production. Instead, it is recommended to make a custom sticker set in a JavaScript module (Option 2).
-
-```js
-// Option 2: /src/stickers.js
-import 'rivet-stickers/dist/stickers/tulip.js';
-import 'rivet-stickers/dist/stickers/t-shirt-iu.js';
-```
-
 ## Usage
 
 The following are some notable contents in the `rivet-stickers` npm package and how to use them.
@@ -87,7 +69,7 @@ import { getStickers, RivetStickerElement } from 'rivet-stickers';
 Use the module bundle for development or prototyping.
 
 ```js
-// Import all stickers from a single module.
+// Import all stickers.
 import 'rivet-stickers/dist/rivet-stickers.js';
 
 // Optional: Access the API.
@@ -103,7 +85,7 @@ Use the UMD bundle for development or prototyping.
 <script src="/path/to/rivet-stickers/dist/rivet-stickers.umd.cjs"></script>
 <script>
 // Optional: Access the API.
-const { getStickers, RivetStickerElement } = window.Rivetstickers;
+const { getStickers, RivetStickerElement } = window.RivetStickers;
 </script>
 ```
 
