@@ -43,14 +43,12 @@ The following are some notable contents in the `rivet-stickers` npm package and 
 
 | Path | Description |
 | --- | --- |
-| `./dist` | Production JavaScript modules. |
 | `./dist/stickers/*.js` | Sticker modules. |
 | `./dist/rivet-stickers.js` | Bundle containing all the stickers (as ES module). |
 | `./dist/rivet-stickers.umd.cjs` | Bundle containing all the stickers (as UMD file). |
 | `./dist/rivet-stickers.json` | JSON array of all sticker names. |
-| `./src` | Source files. |
 | `./src/rivet-sticker-element.js` | Rivet Sticker Element (custom element `<rvt-sticker>`). |
-| `./src/stickers/*.svg` | SVG sticker files. |
+| `./src/stickers/*.svg` | SVG sticker source files. |
 
 ### `stickers/*.js`
 
