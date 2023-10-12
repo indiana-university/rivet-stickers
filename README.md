@@ -192,7 +192,7 @@ html:has(rvt-sticker:not(:defined)) {
 
 ## Request a new sticker
 
-[Submit a Rivet support request](https://github.com/indiana-university/rivet-stickers/issues/new) to request a new sticker.
+[Submit a Rivet support request](https://rivet.uits.iu.edu/help/#support-request-form) to request a new sticker.
 
 ## Run the docs site
 
