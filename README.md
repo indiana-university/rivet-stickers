@@ -81,14 +81,12 @@ Use the UMD bundle for development or prototyping. All stickers are included.
 
 ### `name` attribute
 
-Once stickers are installed and registered, declare the sticker to be rendered with the `name` attribute.
+Declare the sticker to be rendered with the `name` attribute. The name of a sticker matches its corresponding SVG file name (`./src/stickers/*.svg`).
 
 ```html
 <rvt-sticker name="tulip"></rvt-sticker>
 <rvt-sticker name="t-shirt-iu"></rvt-sticker>
 ```
-
-The name of a sticker matches its corresponding SVG file name (`./src/stickers/*.svg`).
 
 ### `size` attribute
 
