@@ -48,7 +48,7 @@ The following are some notable contents in the `rivet-stickers` npm package and 
 | `./dist/rivet-stickers.umd.cjs` | Bundle containing all the stickers (as UMD file). |
 | `./dist/rivet-stickers.json` | JSON array of all sticker names. |
 | `./src/rivet-sticker-element.js` | Rivet Sticker Element (custom element `<rvt-sticker>`). |
-| `./src/stickers/*.svg` | SVG sticker source files. |
+| `./src/stickers/*.svg` | Sticker source files. |
 
 ### `stickers/*.js`
 
