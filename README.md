@@ -7,7 +7,8 @@
 1. [Quick start](#quick-start)
 1. [Install](#install)
 1. [Usage](#usage)
-1. [API](#api)
+1. [HTML API](#html-api)
+1. [JavaScript API](#javascript-api)
 1. [Accessibility](#accessibility)
 1. [Flash of unstyled content](#flash-of-unstyled-content)
 1. [Request a new sticker](#request-a-new-sticker)
@@ -56,12 +57,8 @@ The following are some notable contents in the `rivet-stickers` npm package and 
 Use the sticker modules for production. This method is recommended, as only the declared stickers will be included.
 
 ```js
-// Import individual sticker modules.
 import 'rivet-stickers/dist/stickers/tulip.js';
 import 'rivet-stickers/dist/stickers/t-shirt-iu.js';
-
-// Optional: Access the API.
-import { getStickers, RivetStickerElement } from 'rivet-stickers';
 ```
 
 ### `rivet-stickers.js`
@@ -69,12 +66,7 @@ import { getStickers, RivetStickerElement } from 'rivet-stickers';
 Use the module bundle for development or prototyping. All stickers are included.
 
 ```html
-<!-- Import all stickers from a single module. -->
 <script type="module" src="./rivet-stickers/dist/rivet-stickers.js"></script>
-<script type="module">
-// Optional: Access the API.
-import { getStickers, RivetStickerElement } from './rivet-stickers/dist/rivet-stickers.js';
-</script>
 ```
 
 ### `rivet-stickers.umd.cjs`
@@ -82,15 +74,10 @@ import { getStickers, RivetStickerElement } from './rivet-stickers/dist/rivet-st
 Use the UMD bundle for development or prototyping. All stickers are included.
 
 ```html
-<!-- Import all stickers from a single file. -->
 <script src="./rivet-stickers/dist/rivet-stickers.umd.cjs"></script>
-<script>
-// Optional: Access the API.
-const { getStickers, RivetStickerElement } = window.RivetStickers;
-</script>
 ```
 
-## API
+## HTML API
 
 ### `name` attribute
 
@@ -136,6 +123,21 @@ Theme options:
 - `green`
 - `orange`
 - `purple`
+
+## JavaScript API
+
+Access the JavaScript API through the `rivet-stickers` module or `RivetStickers` global variable.
+
+```js
+// Option 1: If using `stickers/*.js`.
+import { getStickers, RivetStickerElement } from 'rivet-stickers';
+
+// Option 2: If using `rivet-stickers.js`.
+import { getStickers, RivetStickerElement } from './rivet-stickers/dist/rivet-stickers.js';
+
+// Option 3: If using `rivet-stickers.umd.cjs`.
+const { getStickers, RivetStickerElement } = window.RivetStickers;
+```
 
 ### `rvtStickerRegistered` event
 
