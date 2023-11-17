@@ -3,10 +3,6 @@ html {
 	background-color: var(--color-black-100);
 }
 
-html:has(rvt-sticker:not(:defined)) {
-	display: none;
-}
-
 .docs-sticker-list {
 	display: grid;
 	gap: 0.5rem;
@@ -14,4 +10,8 @@ html:has(rvt-sticker:not(:defined)) {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+}
+
+.u-gap-col-sm {
+	column-gap: var(--spacing-sm);
 }

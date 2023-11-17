@@ -8,9 +8,9 @@ import stickers from '../../../dist/rivet-stickers.json';
 	<ul class="docs-sticker-list rvt-m-top-md">
 	{
 		stickers.map((item) => (
-			<li class="rvt-bg-white rvt-border-radius-md rvt-flex rvt-items-center rvt-p-all-xs">
-				<rvt-sticker name={item} class="rvt-p-all-xxs" theme="crimson" size="md"></rvt-sticker>
-				<span class="rvt-p-left-xs">{item}</span>
+			<li class="rvt-bg-white rvt-border-radius-md rvt-flex rvt-items-center rvt-p-all-xs u-gap-col-sm">
+				<rvt-sticker name={item} theme="crimson" size="md"></rvt-sticker>
+				{item}
 			</li>
 		))
 	}
