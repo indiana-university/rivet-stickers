@@ -8,82 +8,12 @@ const nameToTemplateMap = new Map();
 const elementTemplate = document.createElement('template');
 elementTemplate.innerHTML = `
 <style>
-:host {
-	--color-black-100: #e2e7e9;
-	--color-black-500: #243142;
-	--color-blue-100: #c6ecf6;
-	--color-blue-500: #006298;
-	--color-crimson-100: #ffcdc0;
-	--color-crimson-500: #900;
-	--color-gold-100: #fff4c6;
-	--color-gold-600: #a36b00;
-	--color-green-100: #dee8c6;
-	--color-green-500: #056e41;
-	--color-orange-100: #ffcdc0;
-	--color-orange-500: #df3603;
-	--color-purple-100: #decadc;
-	--color-purple-500: #59264d;
-	--color-white: #fff;
-	--bg: var(--color-black-100);
-	--fill: var(--color-white);
-	--size-xs: 3rem;
-	--size-sm: 4rem;
-	--size-md: 5rem;
-	--size-lg: 6rem;
-	--size-xl: 8rem;
-	--size: var(--size-md);
-	color: var(--color-black-500);
-}
-:host([theme="blue"]) {
-	--bg: var(--color-blue-100);
-	color: var(--color-blue-500);
-}
-:host([theme="crimson"]) {
-	--bg: var(--color-crimson-100);
-	color: var(--color-crimson-500);
-}
-:host([theme="gold"]) {
-	--bg: var(--color-gold-100);
-	color: var(--color-gold-600);
-}
-:host([theme="green"]) {
-	--bg: var(--color-green-100);
-	color: var(--color-green-500);
-}
-:host([theme="orange"]) {
-	--bg: var(--color-orange-100);
-	color: var(--color-orange-500);
-}
-:host([theme="purple"]) {
-	--bg: var(--color-purple-100);
-	color: var(--color-purple-500);
-}
-:host([size="xs"]) {
-	--size: var(--size-xs);
-}
-:host([size="sm"]) {
-	--size: var(--size-sm);
-}
-:host([size="md"]) {
-	--size: var(--size-md);
-}
-:host([size="lg"]) {
-	--size: var(--size-lg);
-}
-:host([size="xl"]) {
-	--size: var(--size-xl);
-}
-.container {
-	background-color: var(--bg);
-	border-radius: 100%;
-}
-:host,
 .container {
 	display: inline-flex;
 }
 svg {
-	height: var(--size);
-	width: var(--size);
+	height: 100%;
+	width: 100%;
 }
 </style>
 <span class="container"></span>

@@ -1,0 +1,81 @@
+rvt-sticker {
+	--color-black-100: #e2e7e9;
+	--color-black-500: #243142;
+	--color-blue-100: #c6ecf6;
+	--color-blue-500: #006298;
+	--color-crimson-100: #ffcdc0;
+	--color-crimson-500: #900;
+	--color-gold-100: #fff4c6;
+	--color-gold-600: #a36b00;
+	--color-green-100: #dee8c6;
+	--color-green-500: #056e41;
+	--color-orange-100: #ffcdc0;
+	--color-orange-500: #df3603;
+	--color-purple-100: #decadc;
+	--color-purple-500: #59264d;
+	--color-white: #fff;
+	--bg: var(--color-black-100);
+	--fill: var(--color-white);
+	--size-xs: 3rem;
+	--size-sm: 4rem;
+	--size-md: 5rem;
+	--size-lg: 6rem;
+	--size-xl: 8rem;
+	--size: var(--size-md);
+	background-color: var(--bg);
+	border-radius: 100%;
+	color: var(--color, --color-black-500);
+	display: inline-flex;
+	height: var(--size);
+	width: var(--size);
+}
+
+rvt-sticker[theme="blue"] {
+	--bg: var(--color-blue-100);
+	--color: var(--color-blue-500);
+}
+
+rvt-sticker[theme="crimson"] {
+	--bg: var(--color-crimson-100);
+	--color: var(--color-crimson-500);
+}
+
+rvt-sticker[theme="gold"] {
+	--bg: var(--color-gold-100);
+	--color: var(--color-gold-600);
+}
+
+rvt-sticker[theme="green"] {
+	--bg: var(--color-green-100);
+	--color: var(--color-green-500);
+}
+
+rvt-sticker[theme="orange"] {
+	--bg: var(--color-orange-100);
+	--color: var(--color-orange-500);
+}
+
+rvt-sticker[theme="purple"] {
+	--bg: var(--color-purple-100);
+	--color: var(--color-purple-500);
+}
+
+rvt-sticker[size="xs"] {
+	--size: var(--size-xs);
+}
+
+rvt-sticker[size="sm"] {
+	--size: var(--size-sm);
+}
+
+rvt-sticker[size="md"] {
+	--size: var(--size-md);
+}
+
+rvt-sticker[size="lg"] {
+	--size: var(--size-lg);
+}
+
+rvt-sticker[size="xl"] {
+	--size: var(--size-xl);
+}

@@ -10,7 +10,6 @@
 1. [HTML API](#html-api)
 1. [JavaScript API](#javascript-api)
 1. [Accessibility](#accessibility)
-1. [Flash of unstyled content](#flash-of-unstyled-content)
 1. [Request a new sticker](#request-a-new-sticker)
 1. [Run the docs site](#run-the-docs-site)
 
@@ -21,6 +20,7 @@
 <html lang="en">
 	<head>
 		<title>Rivet sticker example</title>
+		<link rel="stylesheet" href="https://unpkg.com/rivet-stickers@1/src/rivet-sticker-element.css">
 		<script type="module" src="https://unpkg.com/rivet-stickers@1/dist/rivet-stickers.js"></script>
 	</head>
 	<body>
@@ -48,6 +48,7 @@ The following are some notable contents in the `rivet-stickers` npm package and 
 | `./dist/rivet-stickers.umd.cjs` | Bundle containing all the stickers (as UMD file). |
 | `./dist/rivet-stickers.json` | JSON array of all sticker names. |
 | `./src/rivet-sticker-element.js` | Rivet Sticker Element (custom element `<rvt-sticker>`). |
+| `./src/rivet-sticker-element.css` | Rivet Sticker Element styles. |
 | `./src/stickers/*.svg` | Sticker source files. |
 
 ### `stickers/*.js`
@@ -73,6 +74,14 @@ Use the UMD bundle for development or prototyping. All stickers are included.
 
 ```html
 <script src="./rivet-stickers/dist/rivet-stickers.umd.cjs"></script>
+```
+
+### `rivet-sticker-element.css`
+
+Always include this CSS file.
+
+```html
+<link rel="stylesheet" href="./rivet-stickers/src/rivet-sticker-element.css">
 ```
 
 ## HTML API
@@ -176,18 +185,6 @@ Stickers are considered decorative images. They are hidden from screen readers v
 <!-- Example: Screen reader only text alternative. -->
 <rvt-sticker name="t-shirt-iu"></rvt-sticker>
 <span class="rvt-sr-only">Apparel</span>
-```
-
-## Flash of unstyled content
-
-"Flash of unstyled content" typically happens when the server (instead of client) renders a custom element (`<rvt-sticker>`). After the element is defined, it becomes visible and shifts the layout. To avoid this, wait to render content until after the element is defined.
-
-In the following example, the HTML document renders nothing until `<rvt-sticker>` is defined.
-
-```css
-html:has(rvt-sticker:not(:defined)) {
-	display: none;
-}
 ```
 
 ## Request a new sticker
