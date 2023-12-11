@@ -5,20 +5,6 @@ const registeredEventName = 'rvtStickerRegistered';
 const size = 80;
 const nameToTemplateMap = new Map();
 
-const elementTemplate = document.createElement('template');
-elementTemplate.innerHTML = `
-<style>
-.container {
-	display: inline-flex;
-}
-svg {
-	height: 100%;
-	width: 100%;
-}
-</style>
-<span class="container"></span>
-`;
-
 export function getStickers () {
 	return [...nameToTemplateMap.keys()];
 }
@@ -40,9 +26,9 @@ export function registerSticker (name, content) {
 		'aria-hidden': 'true',
 		fill: 'currentColor',
 		focusable: 'false',
-		height: size,
+		height: '100%',
 		viewBox: `0 0 ${size} ${size}`,
-		width: size,
+		width: '100%',
 		xmlns: 'http://www.w3.org/2000/svg'
 	});
 	nameToTemplateMap.set(name, template);
@@ -53,7 +39,6 @@ export function registerSticker (name, content) {
 }
 
 export class RivetStickerElement extends window.HTMLElement {
-	#container;
 	#name;
 	#requestUpdate;
 
@@ -63,9 +48,6 @@ export class RivetStickerElement extends window.HTMLElement {
 
 	constructor () {
 		super();
-		const shadowRoot = this.attachShadow({ mode: 'open' });
-		shadowRoot.appendChild(elementTemplate.content.cloneNode(true));
-		this.#container = shadowRoot.querySelector('.container');
 		this.#requestUpdate = throttleRAF(this.#update.bind(this));
 	}
 
@@ -84,11 +66,11 @@ export class RivetStickerElement extends window.HTMLElement {
 
 	#update () {
 		const name = this.getAttribute(nameAttributeName);
-		if (!this.#container || !nameToTemplateMap.has(name) || this.#name === name) {
+		if (!nameToTemplateMap.has(name) || this.#name === name) {
 			return;
 		}
 		const svg = nameToTemplateMap.get(name).content.cloneNode(true);
-		this.#container.replaceChildren(svg);
+		this.replaceChildren(svg);
 		this.#name = name;
 	}
 }
