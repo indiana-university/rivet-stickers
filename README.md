@@ -51,7 +51,7 @@ The following are some notable contents in the `rivet-stickers` npm package and 
 
 ### `stickers/*.js`
 
-Use the sticker modules for production. This method is recommended, as only the declared stickers will be included.
+Use the sticker modules for production. This method is recommended, as only the declared stickers will be included. These modules import the Rivet Sticker Element.
 
 ```js
 import 'rivet-stickers/dist/stickers/tulip.js';
@@ -60,7 +60,7 @@ import 'rivet-stickers/dist/stickers/t-shirt-iu.js';
 
 ### `rivet-stickers.js`
 
-Use the module bundle for development or prototyping. All stickers are included.
+Use the module bundle for development or prototyping. The Rivet Sticker Element and all stickers are included.
 
 ```html
 <script type="module" src="./rivet-stickers/dist/rivet-stickers.js"></script>
