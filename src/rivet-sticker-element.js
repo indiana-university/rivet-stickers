@@ -1,3 +1,5 @@
+import './rivet-sticker-element.css';
+
 const packageName = 'Rivet Stickers';
 const elementName = 'rvt-sticker';
 const nameAttributeName = 'name';

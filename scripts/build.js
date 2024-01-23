@@ -7,11 +7,11 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { build } from 'vite';
 
+const BUNDLE_BASE_NAME = 'rivet-stickers';
+const ELEMENT_BASE_NAME = 'rivet-sticker-element';
 const OUT_DIR = 'dist';
-const OUT_FILE = 'rivet-stickers';
-const SVG_DIR = 'stickers';
 const SRC_DIR = 'src';
-const ELEMENT_PATH = `${SRC_DIR}/rivet-sticker-element.js`;
+const SVG_DIR = 'stickers';
 
 //
 // Start build process
@@ -20,6 +20,7 @@ const ELEMENT_PATH = `${SRC_DIR}/rivet-sticker-element.js`;
 await cleanup();
 const icons = await getIcons();
 await createJSON(icons);
+await createCustomElement();
 await createJS(icons);
 await createBundle(icons);
 
@@ -52,7 +53,25 @@ async function getIcons () {
 async function createJSON (icons) {
 	const data = icons.map(({ name }) => name);
 	const contents = JSON.stringify(data);
-	await writeFile(`${OUT_FILE}.json`, contents);
+	await writeFile(`${BUNDLE_BASE_NAME}.json`, contents);
+}
+
+async function createCustomElement () {
+	await build({
+		build: {
+			emptyOutDir: false,
+			lib: {
+				entry: `${SRC_DIR}/${ELEMENT_BASE_NAME}.js`,
+				fileName: ELEMENT_BASE_NAME,
+				formats: ['es']
+			},
+			rollupOptions: {
+				output: {
+					assetFileNames: `${ELEMENT_BASE_NAME}.[ext]`
+				}
+			}
+		}
+	});
 }
 
 async function createJS (icons) {
@@ -63,7 +82,7 @@ async function createJS (icons) {
 			.replace(/ fill="#000"/g, '')
 			.replace(/(\n|  )/g, '');
 		const contents =
-`import { registerSticker } from '../../${ELEMENT_PATH}';
+`import { registerSticker } from '../${ELEMENT_BASE_NAME}.js';
 
 export const name = '${name}';
 export const svg = \`${svg}\`;
@@ -81,7 +100,7 @@ async function createBundle (icons) {
 	const imports = icons
 		.map(({ name }) => `import './${SVG_DIR}/${name}.js';\n`)
 		.join('');
-	const exports = `export * from '../${ELEMENT_PATH}';\n`;
+	const exports = `export * from './${ELEMENT_BASE_NAME}.js';\n`;
 	const contents = `${imports}${exports}`;
 	await writeFile(tmpFile, contents);
 	await build({
@@ -89,8 +108,8 @@ async function createBundle (icons) {
 			emptyOutDir: false,
 			lib: {
 				entry: tmpPath,
-				fileName: OUT_FILE,
-				name: 'RivetStickers'
+				fileName: BUNDLE_BASE_NAME,
+				formats: ['es']
 			}
 		}
 	});

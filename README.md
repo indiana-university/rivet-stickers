@@ -19,7 +19,7 @@
 <html lang="en">
 	<head>
 		<title>Rivet sticker example</title>
-		<link rel="stylesheet" href="https://unpkg.com/rivet-stickers@1/src/rivet-sticker-element.css">
+		<link rel="stylesheet" href="https://unpkg.com/rivet-stickers@1/dist/rivet-sticker-element.css">
 		<script type="module" src="https://unpkg.com/rivet-stickers@1/dist/rivet-stickers.js"></script>
 	</head>
 	<body>
@@ -44,10 +44,9 @@ The following are some notable contents in the `rivet-stickers` npm package and 
 | --- | --- |
 | `./dist/stickers/*.js` | Sticker modules. |
 | `./dist/rivet-stickers.js` | Bundle containing all the stickers (as ES module). |
-| `./dist/rivet-stickers.umd.cjs` | Bundle containing all the stickers (as UMD file). |
 | `./dist/rivet-stickers.json` | JSON array of all sticker names. |
-| `./src/rivet-sticker-element.js` | Rivet Sticker Element (custom element `<rvt-sticker>`). |
-| `./src/rivet-sticker-element.css` | Rivet Sticker Element styles. |
+| `./dist/rivet-sticker-element.js` | Rivet Sticker Element (custom element `<rvt-sticker>`). |
+| `./dist/rivet-sticker-element.css` | Rivet Sticker Element styles. |
 | `./src/stickers/*.svg` | Sticker source files. |
 
 ### `stickers/*.js`
@@ -72,7 +71,7 @@ Use the module bundle for development or prototyping. All stickers are included.
 Always include this CSS file.
 
 ```html
-<link rel="stylesheet" href="./rivet-stickers/src/rivet-sticker-element.css">
+<link rel="stylesheet" href="./rivet-stickers/dist/rivet-sticker-element.css">
 ```
 
 ## HTML API

@@ -7,7 +7,7 @@
     "src/**/*"
   ],
   "type": "module",
-  "browser": "./src/rivet-sticker-element.js",
+  "browser": "./dist/rivet-sticker-element.js",
   "scripts": {
     "build": "node scripts/build.js",
     "docs": "astro dev --open",
