@@ -8,7 +8,6 @@
 1. [Install](#install)
 1. [Usage](#usage)
 1. [HTML API](#html-api)
-1. [JavaScript API](#javascript-api)
 1. [Accessibility](#accessibility)
 1. [Request a new sticker](#request-a-new-sticker)
 1. [Run the docs site](#run-the-docs-site)
@@ -68,14 +67,6 @@ Use the module bundle for development or prototyping. All stickers are included.
 <script type="module" src="./rivet-stickers/dist/rivet-stickers.js"></script>
 ```
 
-### `rivet-stickers.umd.cjs`
-
-Use the UMD bundle for development or prototyping. All stickers are included.
-
-```html
-<script src="./rivet-stickers/dist/rivet-stickers.umd.cjs"></script>
-```
-
 ### `rivet-sticker-element.css`
 
 Always include this CSS file.
@@ -128,50 +119,6 @@ Theme options:
 - `green`
 - `orange`
 - `purple`
-
-## JavaScript API
-
-Access the JavaScript API through the `rivet-stickers` module or `RivetStickers` global variable.
-
-```js
-// Option 1: If using `stickers/*.js`.
-import { getStickers, RivetStickerElement } from 'rivet-stickers';
-
-// Option 2: If using `rivet-stickers.js`.
-import { getStickers, RivetStickerElement } from './rivet-stickers/dist/rivet-stickers.js';
-
-// Option 3: If using `rivet-stickers.umd.cjs`.
-const { getStickers, RivetStickerElement } = window.RivetStickers;
-```
-
-### `rvtStickerRegistered` event
-
-Listen to the custom `rvtStickerRegistered` event to know when each sticker has been registered and is ready to be displayed. In the following example, the names of the stickers ("tulip" and "t-shirt-iu") are logged to the console after each sticker is processed.
-
-```js
-document.addEventListener('rvtStickerRegistered', (event) => {
-	console.log(event.detail.name);
-	// "tulip"
-	// "t-shirt-iu"
-});
-```
-
-### `getStickers()` function
-
-Use the `getStickers()` function get an array of all registered stickers.
-
-```js
-import { getStickers } from 'rivet-stickers';
-
-console.log(getStickers());
-// ["tulip", "t-shirt-iu"]
-```
-
-### `RivetStickerElement` class
-
-Access the `RivetStickerElement` class if you need to extend the class or use JavaScript to instantiate an instance of the element.
-
-[Needs example]
 
 ## Accessibility
 

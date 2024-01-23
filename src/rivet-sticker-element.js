@@ -5,10 +5,6 @@ const registeredEventName = 'rvtStickerRegistered';
 const size = 80;
 const nameToTemplateMap = new Map();
 
-export function getStickers () {
-	return [...nameToTemplateMap.keys()];
-}
-
 export function registerSticker (name, content) {
 	if (!name || typeof name !== 'string') {
 		throw new Error(`${packageName}: Name must be a string.`);
@@ -38,7 +34,7 @@ export function registerSticker (name, content) {
 	document.dispatchEvent(event);
 }
 
-export class RivetStickerElement extends window.HTMLElement {
+class RivetStickerElement extends window.HTMLElement {
 	#name;
 	#requestUpdate;
 
