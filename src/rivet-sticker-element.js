@@ -1,3 +1,8 @@
+/*!
+ * Copyright (C) 2024 The Trustees of Indiana University
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
 import './rivet-sticker-element.css';
 
 const packageName = 'Rivet Stickers';
