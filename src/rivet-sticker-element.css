@@ -27,12 +27,12 @@ rvt-sticker {
 	--size-lg: 6rem;
 	--size-xl: 8rem;
 	--size: var(--size-md);
-	background-color: var(--bg);
-	border-radius: 100%;
+	align-items: center;
 	color: var(--color, --color-black-500);
 	display: inline-flex;
-	height: var(--size);
-	width: var(--size);
+	height: min-content;
+	justify-content: center;
+	width: min-content;
 }
 
 rvt-sticker[theme="blue"] {
@@ -83,4 +83,19 @@ rvt-sticker[size="lg"] {
 
 rvt-sticker[size="xl"] {
 	--size: var(--size-xl);
+}
+
+rvt-sticker:not(:defined)::before {
+	content: "";
+	display: block;
+	height: var(--size);
+	width: var(--size);
+}
+
+rvt-sticker > svg {
+	background-color: var(--bg);
+	border-radius: 100%;
+	flex-shrink: 0;
+	height: var(--size);
+	width: var(--size);
 }
