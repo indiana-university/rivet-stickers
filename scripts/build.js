@@ -11,18 +11,17 @@ const BUNDLE_BASE_NAME = 'rivet-stickers';
 const ELEMENT_BASE_NAME = 'rivet-sticker-element';
 const OUT_DIR = 'dist';
 const SRC_DIR = 'src';
-const SVG_DIR = 'stickers';
 
 //
 // Start build process
 //
 
 await cleanup();
-const icons = await getIcons();
-await createJSON(icons);
+const stickers = await getStickers();
+await createJSON(stickers);
 await createCustomElement();
-await createJS(icons);
-await createBundle(icons);
+await createJS(stickers);
+await createBundle(stickers);
 
 //
 // Build steps
@@ -30,11 +29,11 @@ await createBundle(icons);
 
 async function cleanup () {
 	await fs.rm(OUT_DIR, { force: true, recursive: true });
-	await fs.mkdir(path.join(OUT_DIR, SVG_DIR), { recursive: true });
+	await fs.mkdir(OUT_DIR, { recursive: true });
 }
 
-async function getIcons () {
-	const dir = path.join(SRC_DIR, SVG_DIR);
+async function getStickers () {
+	const dir = path.join(SRC_DIR, 'stickers');
 	const promises = (await fs.readdir(dir))
 		.map((file) => {
 			const filePath = path.resolve(dir, file);
@@ -50,8 +49,8 @@ async function getIcons () {
 	return await Promise.all(promises);
 }
 
-async function createJSON (icons) {
-	const data = icons.map(({ name }) => name);
+async function createJSON (stickers) {
+	const data = stickers.map(({ name }) => name);
 	const contents = JSON.stringify(data);
 	await writeFile(`${BUNDLE_BASE_NAME}.json`, contents);
 }
@@ -74,34 +73,32 @@ async function createCustomElement () {
 	});
 }
 
-async function createJS (icons) {
-	const promises = icons.map(async ({ name, source }) => {
+async function createJS (stickers) {
+	const promises = stickers.map(async ({ name, source }) => {
 		const svg = source
 			.replace(/(<svg).*(>)/, '$1$2')
 			.replace(/(fill=")#fff(")/g, '$1var(--fill)$2')
 			.replace(/ fill="#000"/g, '')
 			.replace(/(\n|  )/g, '');
 		const contents =
-`import { registerSticker } from '../${ELEMENT_BASE_NAME}.js';
+`import { registerSticker } from './${ELEMENT_BASE_NAME}.js';
 
 export const name = '${name}';
 export const svg = \`${svg}\`;
 
 registerSticker(name, svg);
 `;
-		await writeFile(path.join(SVG_DIR, `${name}.js`), contents);
+		await writeFile(`${name}.js`, contents);
 	});
 	await Promise.all(promises);
 }
 
-async function createBundle (icons) {
+async function createBundle (stickers) {
 	const tmpFile = 'tmp.js';
 	const tmpPath = path.resolve(OUT_DIR, tmpFile);
-	const imports = icons
-		.map(({ name }) => `import './${SVG_DIR}/${name}.js';\n`)
+	const contents = stickers
+		.map(({ name }) => `import './${name}.js';\n`)
 		.join('');
-	const exports = `export * from './${ELEMENT_BASE_NAME}.js';\n`;
-	const contents = `${imports}${exports}`;
 	await writeFile(tmpFile, contents);
 	await build({
 		build: {
@@ -110,6 +107,9 @@ async function createBundle (icons) {
 				entry: tmpPath,
 				fileName: BUNDLE_BASE_NAME,
 				formats: ['es']
+			},
+			rollupOptions: {
+				external: [`./${ELEMENT_BASE_NAME}.js`]
 			}
 		}
 	});
