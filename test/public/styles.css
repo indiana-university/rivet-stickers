@@ -2,7 +2,7 @@ html {
 	-webkit-text-size-adjust: none;
 }
 
-.docs-sticker-list {
+.test-sticker-list {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
 	list-style: none;
