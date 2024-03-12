@@ -83,8 +83,8 @@ async function createJS (stickers) {
 		const contents =
 `import { registerSticker } from './${ELEMENT_BASE_NAME}.js';
 
-export const name = '${name}';
-export const svg = \`${svg}\`;
+const name = '${name}';
+const svg = \`${svg}\`;
 
 registerSticker(name, svg);
 `;
