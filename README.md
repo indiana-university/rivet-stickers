@@ -12,7 +12,12 @@
 
 ### Development
 
-Link to the Rivet Sticker Element styles and the bundle containing all the stickers. These files can be referenced from a service like [UNPKG](https://unpkg.com/browse/rivet-stickers/). This approach is recommended for development, prototyping, or restrictive production environments.
+Link to:
+
+- The Rivet Sticker Element styles (`./dist/rivet-sticker-element.css`)
+- The bundle containing all the stickers (`./dist/rivet-stickers.js`)
+
+These files can be referenced from a service like [UNPKG](https://unpkg.com/browse/rivet-stickers/). This approach is recommended for development, prototyping, or restrictive production environments.
 
 ```html
 <!doctype html>
@@ -43,7 +48,10 @@ import 'rivet-stickers/dist/tulip.js';
 import 'rivet-stickers/dist/t-shirt-iu.js';
 ```
 
-Link to the Rivet Sticker Element styles and the custom module in the page.
+Link to:
+
+- The Rivet Sticker Element styles (`./dist/rivet-sticker-element.css`)
+- The custom module (for example, `./src/stickers.js`)
 
 ```html
 <!doctype html>
