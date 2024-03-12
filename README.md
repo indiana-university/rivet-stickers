@@ -12,7 +12,7 @@
 
 ### Development
 
-Link to the Rivet Sticker Element styles and the bundle containing all the stickers in the set in the page. These files can be referenced from a service like [UNPKG](https://unpkg.com/browse/rivet-stickers/). This approach includes all stickers instead of selective ones. As such, this approach is recommended for development, prototyping, or restrictive production environments.
+Link to the Rivet Sticker Element styles and the bundle containing all the stickers. These files can be referenced from a service like [UNPKG](https://unpkg.com/browse/rivet-stickers/). This approach is recommended for development, prototyping, or restrictive production environments.
 
 ```html
 <!doctype html>
@@ -29,7 +29,7 @@ Link to the Rivet Sticker Element styles and the bundle containing all the stick
 
 ### Production
 
-For production, first install the npm package.
+For production, install the npm package.
 
 ```
 npm install --save rivet-stickers
