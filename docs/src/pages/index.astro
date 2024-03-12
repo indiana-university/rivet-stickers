@@ -5,10 +5,10 @@ import stickers from '../../../dist/rivet-stickers.json';
 
 <Layout>
 	<h1 class="rvt-ts-md">Rivet Stickers</h1>
-	<ul class="docs-sticker-list rvt-m-top-md">
+	<ul class="docs-sticker-list rvt-gap-xs rvt-m-top-md">
 	{
 		stickers.map((item) => (
-			<li class="rvt-bg-white rvt-border-radius-md rvt-flex rvt-items-center rvt-p-all-xs u-gap-col-sm">
+			<li class="rvt-bg-white rvt-border-all rvt-border-radius-md rvt-flex rvt-gap-col-sm rvt-items-center rvt-p-all-xs">
 				<rvt-sticker name={item} theme="crimson" size="md"></rvt-sticker>
 				{item}
 			</li>
