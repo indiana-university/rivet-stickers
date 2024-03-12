@@ -59,7 +59,7 @@ Link to the Rivet Sticker Element styles and the custom module in the page.
 </html>
 ```
 
-## Accessibility
+### Accessibility
 
 By default, stickers are considered decorative images and hidden from screen reader users.
 
