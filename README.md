@@ -1,26 +1,32 @@
 # Rivet Stickers
 
-[Stickers](https://rivet.iu.edu/stickers/) for Indiana University's Rivet Design System.
+[Stickers](https://rivet.iu.edu/icons-stickers/) for Indiana University's Rivet Design System.
 
 ## Contents
 
-1. [Quick start](#quick-start)
-1. [Install](#install)
 1. [Usage](#usage)
 1. [HTML API](#html-api)
-1. [Accessibility](#accessibility)
 1. [Request a new sticker](#request-a-new-sticker)
-1. [Run the docs site](#run-the-docs-site)
 
-## Quick start
+## Usage
+
+### Development
+
+This approach is recommended for development, prototyping, or restrictive production environments.
+
+Link to:
+
+- The Rivet Sticker Element styles (`./dist/rivet-sticker-element.css`)
+- The bundle containing all the stickers (`./dist/rivet-stickers.js`)
+
+These files can be linked from a service like [UNPKG](https://unpkg.com/browse/rivet-stickers/).
 
 ```html
 <!doctype html>
 <html lang="en">
 	<head>
-		<title>Rivet sticker example</title>
-		<link rel="stylesheet" href="https://unpkg.com/rivet-stickers@1/dist/rivet-sticker-element.css">
-		<script type="module" src="https://unpkg.com/rivet-stickers@1/dist/rivet-stickers.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/rivet-stickers/dist/rivet-sticker-element.css">
+		<script type="module" src="https://unpkg.com/rivet-stickers/dist/rivet-stickers.js"></script>
 	</head>
 	<body>
 		<rvt-sticker name="tulip"></rvt-sticker>
@@ -28,50 +34,64 @@
 </html>
 ```
 
-## Install
+### Production
 
-Install this package by referencing it from a service like [UNPKG](https://unpkg.com/browse/rivet-stickers/) or from a local installation with npm.
+For production, install the npm package.
 
 ```
 npm install --save rivet-stickers
 ```
 
-## Usage
-
-The following are some notable contents in the `rivet-stickers` npm package and how to use them.
-
-| Path | Description |
-| --- | --- |
-| `./dist/stickers/*.js` | Sticker modules. |
-| `./dist/rivet-stickers.js` | Bundle containing all the stickers (as ES module). |
-| `./dist/rivet-stickers.json` | JSON array of all sticker names. |
-| `./dist/rivet-sticker-element.js` | Rivet Sticker Element (custom element `<rvt-sticker>`). |
-| `./dist/rivet-sticker-element.css` | Rivet Sticker Element styles. |
-| `./src/stickers/*.svg` | Sticker source files. |
-
-### `stickers/*.js`
-
-Use the sticker modules for production. This method is recommended, as only the declared stickers will be included. These modules import the Rivet Sticker Element.
+Create a custom module which imports only the stickers needed. The sticker module name (such as `./dist/tulip.js`) matches its corresponding SVG file name (such as `./src/stickers/tulip.svg`).
 
 ```js
-import 'rivet-stickers/dist/stickers/tulip.js';
-import 'rivet-stickers/dist/stickers/t-shirt-iu.js';
+// ./src/stickers.js
+import 'rivet-stickers/dist/tulip.js';
+import 'rivet-stickers/dist/t-shirt-iu.js';
 ```
 
-### `rivet-stickers.js`
+Link to:
 
-Use the module bundle for development or prototyping. The Rivet Sticker Element and all stickers are included.
+- The Rivet Sticker Element styles (`./dist/rivet-sticker-element.css`)
+- The custom module (for example, `./src/stickers.js`)
 
 ```html
-<script type="module" src="./rivet-stickers/dist/rivet-stickers.js"></script>
+<!doctype html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="./node_modules/rivet-stickers/dist/rivet-sticker-element.css">
+		<script type="module" src="./src/stickers.js"></script>
+	</head>
+	<body>
+		<rvt-sticker name="tulip"></rvt-sticker>
+		<rvt-sticker name="t-shirt-iu"></rvt-sticker>
+	</body>
+</html>
 ```
 
-### `rivet-sticker-element.css`
+### Accessibility
 
-Always include this CSS file.
+By default, stickers are considered decorative images and hidden from screen reader users.
+
+Ask this question to test if alternative text is needed: "Would this content still make sense to sighted users if the sticker was removed?" If no, then add alternative text using the Rivet class `rvt-sr-only`. For example:
 
 ```html
-<link rel="stylesheet" href="./rivet-stickers/dist/rivet-sticker-element.css">
+<rvt-sticker name="t-shirt-iu"></rvt-sticker>
+<span class="rvt-sr-only">T-shirt printed with Indiana University logo</span>
+```
+
+### Testing
+
+Download or clone this repo, then install dependencies.
+
+```
+npm install
+```
+
+Start the server to launch the local test environment.
+
+```
+npm run start
 ```
 
 ## HTML API
@@ -87,7 +107,7 @@ Use the `name` attribute to declare the sticker to be rendered. The name of a st
 
 ### `size` attribute
 
-Use the `size` attribute to select the size of the sticker. 
+Use the `size` attribute to select the size of the sticker.
 
 ```html
 <rvt-sticker name="tulip" size="lg"></rvt-sticker>
@@ -119,36 +139,6 @@ Theme options:
 - `orange`
 - `purple`
 
-## Accessibility
-
-Stickers are considered decorative images. They are hidden from screen readers via `<svg aria-hidden="true">`. However, [text alternatives should still be provided](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content) wherever stickers are used.
-
-```html
-<!-- Example: Text alternative. -->
-<rvt-sticker name="t-shirt-iu"></rvt-sticker>
-<span>Apparel</span>
-
-<!-- Example: Screen reader only text alternative. -->
-<rvt-sticker name="t-shirt-iu"></rvt-sticker>
-<span class="rvt-sr-only">Apparel</span>
-```
-
 ## Request a new sticker
 
 [Submit a Rivet support request](https://rivet.uits.iu.edu/help/#support-request-form) to request a new sticker.
-
-## Run the docs site
-
-To run the docs site locally, clone or download this repo.
-
-Install dependencies.
-
-```
-npm install
-```
-
-Build the site and start a local development server.
-
-```
-npm run start
-```

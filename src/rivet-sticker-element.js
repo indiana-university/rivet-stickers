@@ -43,15 +43,14 @@ export function registerSticker (name, content) {
 
 class RivetStickerElement extends window.HTMLElement {
 	#name;
-	#requestUpdate;
+	#requestUpdate = throttleRAF(this.#update.bind(this));
 
 	static get observedAttributes () {
 		return [nameAttributeName];
 	}
 
-	constructor () {
-		super();
-		this.#requestUpdate = throttleRAF(this.#update.bind(this));
+	attributeChangedCallback () {
+		this.#requestUpdate();
 	}
 
 	connectedCallback () {
@@ -63,17 +62,13 @@ class RivetStickerElement extends window.HTMLElement {
 		document.removeEventListener(registeredEventName, this.#requestUpdate);
 	}
 
-	attributeChangedCallback () {
-		this.#requestUpdate();
-	}
-
 	#update () {
 		const name = this.getAttribute(nameAttributeName);
 		if (!nameToTemplateMap.has(name) || this.#name === name) {
 			return;
 		}
-		const svg = nameToTemplateMap.get(name).content.cloneNode(true);
-		this.replaceChildren(svg);
+		const content = nameToTemplateMap.get(name).content.cloneNode(true);
+		this.replaceChildren(content);
 		this.#name = name;
 	}
 }
