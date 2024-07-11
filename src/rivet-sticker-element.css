@@ -83,7 +83,7 @@ rvt-sticker[size="xl"] {
 	--size: var(--size-xl);
 }
 
-rvt-sticker:not(:defined)::before,
+rvt-sticker:empty::before,
 rvt-sticker > svg {
 	background-color: var(--bg, var(--color-black-100));
 	border-radius: 100%;
