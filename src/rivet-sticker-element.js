@@ -13,32 +13,7 @@ const size = 80;
 const nameToTemplateMap = new Map();
 
 export function registerSticker (name, content) {
-	if (!name || typeof name !== 'string') {
-		throw new Error(`${packageName}: Name must be a string.`);
-	}
-	const template = document.createElement('template');
-	template.innerHTML = content;
-	if (template.content.children.length !== 1) {
-		throw new Error(`${packageName} (${name}): Content must contain one SVG element.`);
-	}
-	const svg = template.content.firstChild;
-	if (svg.nodeName.toLowerCase() !== 'svg') {
-		throw new Error(`${packageName} (${name}): Content must be a SVG element.`);
-	}
-	setDefaultAttributes(svg, {
-		'aria-hidden': 'true',
-		fill: 'currentColor',
-		focusable: 'false',
-		height: '100%',
-		viewBox: `0 0 ${size} ${size}`,
-		width: '100%',
-		xmlns: 'http://www.w3.org/2000/svg'
-	});
-	nameToTemplateMap.set(name, template);
-	const event = new CustomEvent(registeredEventName, {
-		detail: { name }
-	});
-	document.dispatchEvent(event);
+	window.customElements.get(elementName).register?.(name, content);
 }
 
 class RivetStickerElement extends window.HTMLElement {
@@ -47,6 +22,35 @@ class RivetStickerElement extends window.HTMLElement {
 
 	static get observedAttributes () {
 		return [nameAttributeName];
+	}
+
+	static register (name, content) {
+		if (!name || typeof name !== 'string') {
+			throw new Error(`${packageName}: Name must be a string.`);
+		}
+		const template = document.createElement('template');
+		template.innerHTML = content;
+		if (template.content.children.length !== 1) {
+			throw new Error(`${packageName} (${name}): Content must contain one SVG element.`);
+		}
+		const svg = template.content.firstChild;
+		if (svg.nodeName.toLowerCase() !== 'svg') {
+			throw new Error(`${packageName} (${name}): Content must be a SVG element.`);
+		}
+		setDefaultAttributes(svg, {
+			'aria-hidden': 'true',
+			fill: 'currentColor',
+			focusable: 'false',
+			height: '100%',
+			viewBox: `0 0 ${size} ${size}`,
+			width: '100%',
+			xmlns: 'http://www.w3.org/2000/svg'
+		});
+		nameToTemplateMap.set(name, template);
+		const event = new CustomEvent(registeredEventName, {
+			detail: { name }
+		});
+		document.dispatchEvent(event);
 	}
 
 	attributeChangedCallback () {
@@ -73,7 +77,9 @@ class RivetStickerElement extends window.HTMLElement {
 	}
 }
 
-window.customElements.define(elementName, RivetStickerElement);
+if (!window.customElements.get(elementName)) {
+	window.customElements.define(elementName, RivetStickerElement);
+}
 
 //
 // Utilities
