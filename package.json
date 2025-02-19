@@ -1,6 +1,6 @@
 {
   "name": "rivet-stickers",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Stickers for Indiana University's Rivet Design System",
   "files": [
     "dist/**/*",
